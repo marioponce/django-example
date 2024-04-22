@@ -1,0 +1,17 @@
+{% extends "optimization/layout.html" %}
+
+  {% block content %}
+      {% if request.user.is_authenticated %}
+      <div class="container">
+        <h1>Welcome {{ request.user.username }} !</h1>
+        <p>{{ request.user.username }}</p>
+        <a class="btn btn-primary" role="button" href="{% url 'logout' %}">Logout</a>
+      </div>
+      {% else %}
+      <div class="container">
+        <h1>Welcome!</h1>
+        <a class="btn btn-primary" role="button" href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
+      </div>
+      {% endif %}
+  {% endblock %}

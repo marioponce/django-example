@@ -1,0 +1,13 @@
+{% extends "optimization/layout.html" %}
+
+{% block content %}
+<div class="container">
+  <h1>Login</h1>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-info">Login</button>
+    <a href="{% url 'signup' %}">Don't have Account Create</a>
+  </form>
+<div>
+{% endblock %}
