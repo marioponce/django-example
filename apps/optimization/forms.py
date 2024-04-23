@@ -10,3 +10,13 @@ class SignupForm(UserCreationForm):
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+class SelectAlgorithm():
+    ALGO_CHOICES= [
+    ('CAG', 'Classic Genetic Algorithm'),
+    ('DE', 'Differential Evolution'),
+    ('BCA', 'Bee Colony Algorithm'),
+    ]
+    algorithm = forms.ChoiceField(label='What algorithm do you want to try?',
+                                  widget=forms.RadioSelect,
+                                  choices=ALGO_CHOICES)

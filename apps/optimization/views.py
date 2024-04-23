@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
 
-from .forms import SignupForm, LoginForm
+from .forms import SignupForm, LoginForm, SelectAlgorithm
 
+from .scripts.algorithms import DE, CGA
+from .scripts.functions import my_fun
 
-# Create your views here.
 # Home page
 def index(request):
     return render(request, "optimization/index.html")
@@ -40,3 +41,27 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect("login")
+
+# Execution of Classic Generic Algorithm
+def view_cga(request):
+    num_iter = 1000
+    n_p = 10
+    bounds = (-65536.0, 65536.0)
+    cga = CGA(n_p, bounds, my_fun)
+    cga.run(num_iter, verbose=True)
+
+    context = {
+        'num_iter': num_iter,
+        'n_p': n_p,
+        'bounds': bounds,
+        'best_x': cga.best_x,
+        'best_fx': cga.best_fx,
+        'worst_x': cga.worst_x,
+        'worst_fx': cga.worst_fx,
+    }
+
+    return render(request, "optimization/cga.html", context = context)
+
+# Execution of Differential Equation
+def view_de(request):
+    return render(request, "optimization/de.html")
