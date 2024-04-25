@@ -7,13 +7,14 @@
           <p>This is a simple example of Django in which you can use a Classic Genetic Algorithm or a Differential Evolution implementation to fin the minimum of:</p>
           <p>f(x) = x^2 + 6 * sin(2*x*pi)</p>
           <hr>
-            <p>{{ num_iter }}</p>
-            <p>{{ n_p }}</p>
-            <p>{{ bounds }}</p>
-            <p>{{ best_x }}</p>
-            <p>{{ best_fx }}</p>
-            <p>{{ worst_x }}</p>
-            <p>{{ worst_fx }}</p>
+            <p>We have ran the algorithm {{ num_iter }} times with a population size of {{ n_p }} individuals. The search space is {{ bounds }}.</p>
+            <p>So, we have found:</p>
+            <ul>
+              <li>Best x: {{ cga.best_x }}</li>
+              <li>Best fx: {{ cga.best_fx }}</li>
+              <li>Worst x: {{ cga.worst_x }}</li>
+              <li>Worst fx: {{ cga.worst_fx }}</li>
+            </ul>
           <hr>
           <h4>Select the algorithm to implement</h4>
 

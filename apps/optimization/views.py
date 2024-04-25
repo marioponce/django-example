@@ -1,3 +1,5 @@
+import numpy as np
+
 from django.shortcuts import render, redirect
 
 from django.contrib.auth import authenticate, login, logout
@@ -54,14 +56,31 @@ def view_cga(request):
         'num_iter': num_iter,
         'n_p': n_p,
         'bounds': bounds,
-        'best_x': cga.best_x,
-        'best_fx': cga.best_fx,
-        'worst_x': cga.worst_x,
-        'worst_fx': cga.worst_fx,
+        'cga': cga,
     }
 
     return render(request, "optimization/cga.html", context = context)
 
 # Execution of Differential Equation
 def view_de(request):
-    return render(request, "optimization/de.html")
+    num_iter = 1000
+    np_ = 10
+    cr = 0.9
+    f = 0.8
+    bounds=(
+        -np.ones(10)*0.1,
+        np.ones(10)*0.1
+    )
+    de = DE(my_fun, bounds, np_, cr, f)
+    de.run(num_iter, verbose=True)
+
+    context = {
+        'num_iter': num_iter,
+        'n_p': np_,
+        'bounds': bounds,
+        'cr': cr,
+        'f': f,
+        'cga': de,
+    }
+
+    return render(request, "optimization/de.html", context = context)

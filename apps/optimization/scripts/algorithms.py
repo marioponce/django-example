@@ -122,7 +122,7 @@ class CGA:
             print('Worst x:', self.worst_x, '\t - >\tWorst fx', self.worst_fx)
 
 class DE:
-    def __init__(self,func, bounds, np_=4,cr=0.9,f=0.8):
+    def __init__(self, func, bounds, np_ = 4, cr = 0.9, f = 0.8):
         self.func = func
         self.__np = np_
         self.__cr = cr
